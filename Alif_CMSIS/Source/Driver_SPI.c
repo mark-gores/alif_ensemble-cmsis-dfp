@@ -1417,6 +1417,10 @@ static int32_t ARM_SPI_Control(SPI_RESOURCES *SPI, uint32_t control, uint32_t ar
         case ARM_SPI_SS_MASTER_HW_OUTPUT:
             {
                 SPI->master_ss_control = SPI_SS_HW_CONTROL;
+                if(SPI->drv_instance != LPSPI_INSTANCE)
+                {
+                    spi_set_sste(SPI->regs, false);
+                }
                 break;
             }
 
